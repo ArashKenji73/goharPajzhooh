@@ -1,0 +1,6 @@
+*{
+  direction: rtl;
+  text-align: right;
+}
+@import "tailwindcss";
+@plugin "daisyui";
