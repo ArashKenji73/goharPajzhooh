@@ -50,6 +50,6 @@ const addMember = () => {
 };
 
 const removeMember = (index) => {
-  modelValue.value.splice(index, 1);
+  props.modelValue.splice(index, 1);
 };
 </script>
