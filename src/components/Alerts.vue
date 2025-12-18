@@ -2,7 +2,7 @@
   <div
     v-if="visible"
     role="alert"
-    class="alert"
+    class="alert fixed top-0 z-50"
     :class="{
       'alert-error': type === 'error',
       'alert-success': type === 'success',
