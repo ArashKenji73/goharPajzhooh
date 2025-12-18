@@ -1,4 +1,6 @@
 <template>
+  <Alerts v-if="error" :type="'error'" :msg="error" />
+  <Alerts v-if="success" :type="'success'" />
   <form class="" v-if="props.modelValue">
     <EmployeeInfo v-model="props.modelValue">
       <FamilySection v-model="props.modelValue.family" />
@@ -9,9 +11,12 @@
 </template>
 
 <script setup>
-import { reactive } from "vue";
+
+import Alerts from "@/components/Alerts.vue";
 import EmployeeInfo from "./EmployeeInfo.vue";
 import FamilySection from "./FamilySection.vue";
+import useEmployee from "@/composables/useEmployee";
+const { updateEmployeeByID, error, success } = useEmployee();
 const props = defineProps({
   modelValue: {
     type: Object,
@@ -19,8 +24,9 @@ const props = defineProps({
   },
 });
 
-const updateEmployee = (id) => {
-  console.log("Updating employee with ID:", id);
+const updateEmployee = async(id) => {
+  const result = await updateEmployeeByID(id, props.modelValue);
+  console.log(result);
 };
 
 </script>

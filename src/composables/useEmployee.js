@@ -4,6 +4,7 @@ import { api, authHeader } from "@/services/api";
 export default function useEmployee() {
   const employees = ref([]);
   const loading = ref(false);
+  const success = ref(false);
   const error = ref(null);
 
   const getEmployees = async () => {
@@ -37,11 +38,32 @@ export default function useEmployee() {
     }
   };
 
+
+  const updateEmployeeByID = async (id, data) => {
+    loading.value = true;
+    error.value = null;
+    try {
+      const res = await api.put(`/employee/${id}`, data, {
+        headers: authHeader,
+      });
+      success.value = true;
+      return res.data;
+    } catch (err) {
+      error.value = err;
+    } finally {
+      loading.value = false;
+    }
+  };
+
+
+
   return {
     employees,
     loading,
     error,
+    success,
     getEmployees,
     getEmployeeByID,
+    updateEmployeeByID, 
   };
 }
