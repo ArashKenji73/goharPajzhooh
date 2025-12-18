@@ -3,4 +3,8 @@
   text-align: right;
 }
 @import "tailwindcss";
-@plugin "daisyui";
+
+
+@plugin "daisyui" {
+  themes: light --default;
+}
