@@ -18,9 +18,9 @@
 
       <select v-model="member.relation" class="w-full input p-2 shadow">
         <option value="spouse">همسر</option>
-        <option value="child">فرزند</option>
-        <option value="father">پدر</option>
-        <option value="mother">مادر</option>
+        <option value="daughter">دختر</option>
+        <option value="son">پسر</option>
+
       </select>
     </div>
   </div>
