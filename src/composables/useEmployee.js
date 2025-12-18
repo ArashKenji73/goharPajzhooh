@@ -38,7 +38,6 @@ export default function useEmployee() {
     }
   };
 
-
   const updateEmployeeByID = async (id, data) => {
     loading.value = true;
     error.value = null;
@@ -54,8 +53,19 @@ export default function useEmployee() {
       loading.value = false;
     }
   };
-
-
+  const createEmployee = async (data) => {
+    error.value = null;
+    success.value = false;
+    try {
+      const res = await api.post("/employee", data, {
+        headers: authHeader,
+      });
+      success.value = true;
+      return res.data;
+    } catch (err) {
+      error.value = err.response?.data?.message || "خطا رخ داد";
+    }
+  };
 
   return {
     employees,
@@ -64,6 +74,7 @@ export default function useEmployee() {
     success,
     getEmployees,
     getEmployeeByID,
-    updateEmployeeByID, 
+    updateEmployeeByID,
+    createEmployee, 
   };
 }
