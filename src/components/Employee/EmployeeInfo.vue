@@ -37,12 +37,10 @@
           class="w-full input p-2 shadow"
         />
       </div>
-
-      <slot></slot>
-
+      <FamilySection v-model="model.family" />
       <button
         :disabled="!meta.valid || meta.pending"
-        @click.prevent="updateEmployee(model.id)"
+        @click.prevent="handleSubmit(model.id)"
         class="mt-4 btn-success py-2 px-4 bg-blue-500 text-white"
       >
         ذخیره اطلاعات
@@ -52,22 +50,43 @@
 </template>
 
 <script setup>
+import { reactive, computed } from "vue";
 import Alerts from "@/components/Alerts.vue";
 import useEmployee from "@/composables/useEmployee";
-import { defineModel } from "vue";
+import FamilySection from "./FamilySection.vue";
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
-const { updateEmployeeByID, error, success } = useEmployee();
+const { updateEmployeeByID, createEmployee, error, success } = useEmployee();
 
+// Determine mode
+const isUpdate = computed(() => !!props.employee?.id);
 // Vue 3.4+ model
-const model = defineModel();
+const props = defineProps({
+  employee: {
+    type: Object,
+    default: () => ({}),
+  },
+});
 
+const model = reactive({
+  id: props.employee?.id || null,
+  firstName: props.employee?.firstName || "",
+  lastName: props.employee?.lastName || "",
+  email: props.employee?.email || "",
+  dateOfBirth: props.employee?.dateOfBirth || "",
+  family: props.employee?.family || [],
+});
 // Yup validation schema
 const schema = yup.object({
   email: yup.string().email("ایمیل معتبر نیست").required("ایمیل الزامی است"),
 });
 
-const updateEmployee = async (id) => {
-  const result = await updateEmployeeByID(id, model.value);
+// Submit handler
+const handleSubmit = async () => {
+  if (isUpdate.value) {
+    await updateEmployeeByID(props.employee.id, model);
+  } else {
+    await createEmployee(model);
+  }
 };
 </script>

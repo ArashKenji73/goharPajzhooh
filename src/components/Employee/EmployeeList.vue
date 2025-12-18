@@ -6,10 +6,13 @@
   <div v-else v-for="employee in employees" :key="employee.id" class="mb-4">
     <Employee :employee="employee" />
   </div>
+
+
+  <EmployeeInfo />
 </template>
 
 <script setup>
-
+import EmployeeInfo from "./EmployeeInfo.vue";
 import Employee from "./Employee.vue";
 import useEmployee from "@/composables/useEmployee";
 const { employees, loading, error, getEmployees } = useEmployee();

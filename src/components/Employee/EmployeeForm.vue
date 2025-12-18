@@ -1,10 +1,7 @@
 <template>
 
   <form class="" v-if="props.modelValue">
-    <EmployeeInfo v-model="props.modelValue">
-      <FamilySection v-model="props.modelValue.family" />
-    </EmployeeInfo>
-
+    <EmployeeInfo  :employee="props.modelValue" />
   </form>
 </template>
 
@@ -12,7 +9,7 @@
 
 
 import EmployeeInfo from "./EmployeeInfo.vue";
-import FamilySection from "./FamilySection.vue";
+
 const props = defineProps({
   modelValue: {
     type: Object,
