@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-white rounded-xl shadow p-6 space-y-4">
+  <section class="rounded-xl shadow p-6 space-y-4">
     <h2 class="text-lg font-semibold text-gray-800">
       اطلاعات کارمند
     </h2>
