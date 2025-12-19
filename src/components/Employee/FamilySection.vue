@@ -8,9 +8,10 @@
       <button
         type="button"
         @click="addMember"
-        class="h-10 px-4 bg-green-500 hover:bg-green-700 text-white font-bold rounded-full"
+        class="flex gap-2 h-10 px-4 items-center justify-center bg-green-500 hover:bg-green-700 text-white font-bold rounded-full"
       >
-        + افزودن عضو
+        <PlusIcon class="size-5 text-white" />
+        افزودن عضو
       </button>
     </div>
 
@@ -32,6 +33,7 @@
 </template>
 
 <script setup>
+import { PlusIcon } from "@heroicons/vue/24/solid";
 import FamilyMember from "./FamilyMember.vue";
 
 const props = defineProps({
