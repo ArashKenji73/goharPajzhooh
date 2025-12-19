@@ -43,7 +43,8 @@
         @click.prevent="handleSubmit(model.id)"
         class="mt-4 btn-success py-2 px-4 bg-blue-500 text-white"
       >
-        ذخیره اطلاعات
+       
+        {{ isUpdate ? "ویرایش" : "ثبت" }}
       </button>
     </Form>
   </section>

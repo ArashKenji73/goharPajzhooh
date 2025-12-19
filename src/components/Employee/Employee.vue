@@ -5,7 +5,9 @@
        {{ employee.firstName }} {{ employee.lastName }}
       </div>
       <div class="collapse-content text-sm">
-        <div v-if="loading">LOADING</div>
+        <div v-if="loading">
+          <span class="loading loading-spinner loading-md"></span>
+        </div>
         <template v-else>
           <!-- {{ singleEmployee }} -->
           <EmployeeForm :modelValue="singleEmployee" />
