@@ -67,6 +67,21 @@ export default function useEmployee() {
     }
   };
 
+
+  const deleteEmployee = async (id) => {
+    error.value = null;
+    success.value = false;
+    try {
+      const res = await api.delete(`/employee/${id}`, {
+        headers: authHeader,
+      });
+      success.value = true;
+      return res.data;
+    } catch (err) {
+      error.value = err.response?.data?.message || "خطا رخ داد";
+    }
+  };
+
   return {
     employees,
     loading,
@@ -76,5 +91,6 @@ export default function useEmployee() {
     getEmployeeByID,
     updateEmployeeByID,
     createEmployee, 
+    deleteEmployee,
   };
 }
